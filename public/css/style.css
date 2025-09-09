@@ -1,0 +1,104 @@
+/* Reset defaults */
+body, h1, label, input, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Page background */
+body {
+  background-color: #fff8f0; /* soft warm pet theme */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Heading */
+h1 {
+  color: #333;
+  font-size: 26px;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+}
+
+/* Paw prints around heading */
+h1::before, h1::after {
+  content: "🐾";
+  margin: 0 10px;
+  color: #ff7b54;
+}
+
+/* Form container */
+form {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 320px;
+  text-align: left;
+}
+
+/* Labels */
+form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Inputs */
+form input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 10px;
+}
+
+form input:focus {
+  border-color: #ff7b54;
+  box-shadow: 0 0 6px rgba(255,123,84,0.3);
+}
+form select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 10px;
+}
+
+form input:focus {
+  border-color: #ff7b54;
+  box-shadow: 0 0 6px rgba(255,123,84,0.3);
+}
+
+/* Submit button */
+form button {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #ff7b54, #ffb26b);
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+form button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #ff6b3d, #ffa64d);
+}
