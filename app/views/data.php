@@ -7,17 +7,6 @@
     <link rel="stylesheet" href="<?=base_url();?>public/css/data.css">
 </head>
 <body>
-    <div>
-        <form action="<?=site_url('user');?>" method="get" class="col-sm-4 float-end d-flex">
-		<?php
-		$q = '';
-		if(isset($_GET['q'])) {
-			$q = $_GET['q'];
-		}
-		?>
-        <input class="form-control me-2" name="q" type="text" placeholder="Search" value="<?=html_escape($q);?>">
-        <button type="submit" class="btn btn-primary" type="button">Search</button>
-	</form>
     <h1>Welcome to Pet's Data</h1>
     <table border="1">
         <tr>
@@ -41,8 +30,5 @@
         <?php endforeach;?>    
     </table>
             <a href="<?=site_url('/pet/create');?>">Create</a>
-    <?php
-	echo $page;?>
-      </div>
 </body>
 </html>
