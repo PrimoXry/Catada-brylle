@@ -79,7 +79,7 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= 'http://localhost:5000/';
+$config['base_url'] 				= 'https://catada-brylle-1.onrender.com/';
 
 /*
 |--------------------------------------------------------------------------
