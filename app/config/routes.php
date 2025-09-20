@@ -43,11 +43,12 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('/', 'CrudController::create', ['GET', 'POST']);
+$router->get('/', 'CrudController::Welcome');
 $router->get('/pet/{name}/{type}/{age}', 'CrudController::pet');
-$router->get('/testdb', 'CrudController::show');
+$router->get('/pet/show', 'CrudController::show');
 $router->match('/pet/create', 'CrudController::create', ['GET', 'POST']);
 $router->match('/pet/update/{id}', 'CrudController::update', ['GET', 'POST']);
 $router->get('/pet/delete/{id}', 'CrudController::delete');
 $router->get('/pet/softdelete/{id}', 'CrudController::softdelete');
-$router->get('/pet/restore/{id}', 'CrudController::restore');
+$router->get('/pet/restore/', 'CrudController::restore');
+$router->get('/pet/retrieve/{id}', 'CrudController::retrieve');

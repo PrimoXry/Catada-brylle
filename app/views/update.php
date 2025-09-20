@@ -29,6 +29,8 @@
         <input type="text" name="age" value="<?=html_escape($pet['age']);?>"><br>
 
         <button type='submit'>Update</button>
+        <a href="<?= site_url('pet/show'); ?>" class="btn danger">Back</a>
+        </form>
     </form>
 </body>
 </html>

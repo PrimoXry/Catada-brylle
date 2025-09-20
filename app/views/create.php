@@ -9,6 +9,7 @@
 <body>
     <h1>Pet's Information</h1>
     <h2>Please enter the details below:</h2>
+    <div class="form-container">
     <form action="<?=site_url('/pet/create');?>" method = "post">
         <label for="name">🐾Name</label><br>
         <input type="text" name ="name" placeholder="Tasha" required><br>
@@ -24,12 +25,15 @@
             <option value="Turtle">Turtle</option>
             <option value="Other">Other</option>
         </select>
-        
-
         <label for="age">🐾Age</label><br>
         <input type="text" name="age" placeholder="2" required> <br>
 
        <button type='submit'>🐾Enter</button>
-    </form>
+           <div class="nav">
+    <a href="<?= site_url('/pet/show/'); ?>" class="btn create">📃 Record</a>
+    <a href="<?= site_url('/'); ?>" class="btn danger">🏰 Home</a>
+</div>
+        </form>
+</div>
 </body>
 </html>

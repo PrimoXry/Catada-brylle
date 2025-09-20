@@ -1,104 +1,156 @@
-/* Reset defaults */
-body, h1, label, input, button {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
-}
-
-/* Page background */
+/* General body style */
 body {
-  background-color: #fff8f0; /* soft warm pet theme */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+
+    /* Playground vibes */
+    background: linear-gradient(to top, #c8f7ff 0%, #a6e4ff 100%);
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* Heading */
-h1 {
-  color: #333;
-  font-size: 26px;
-  margin-bottom: 20px;
-  text-align: center;
-  position: relative;
+/* Grass effect (green strip at bottom) */
+body::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: repeating-linear-gradient(
+        0deg,
+        #4CAF50,
+        #4CAF50 10px,
+        #45a049 10px,
+        #45a049 20px
+    );
+    border-top: 5px solid #2e7d32;
+    z-index: 0;
 }
 
-/* Paw prints around heading */
-h1::before, h1::after {
-  content: "🐾";
-  margin: 0 10px;
-  color: #ff7b54;
+/* Nav buttons (top left) */
+.nav {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    flex-direction: column; /* naka-stack pababa */
+    gap: 10px;
+    z-index: 10;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    text-align: center;
+    min-width: 90px;
+}
+
+.btn.create {
+    background: #ffda79;
+    color: #2c3e50;
+}
+
+.btn.create:hover {
+    background: #f1c40f;
+    color: white;
+}
+
+.btn.danger {
+    background: #74b9ff;
+    color: white;
+}
+
+.btn.danger:hover {
+    background: #0984e3;
+}
+/* Titles */
+h1, h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin: 15px 0;
+    z-index: 1;
 }
 
 /* Form container */
-form {
-  background: #fff;
-  padding: 25px 30px;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  width: 320px;
-  text-align: left;
+.form-container {
+    background: #fffbea;
+    border-radius: 25px;
+    padding: 35px;                /* mas maluwag */
+    max-width: 500px;             /* mas malapad */
+    margin: 80px auto 40px;       /* binaba mula 100px → 80px para umangat */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    border: 5px solid #f9ca24;
+    position: relative;
+    z-index: 1;
 }
 
 /* Labels */
-form label {
-  display: block;
-  margin: 12px 0 6px;
-  font-weight: 600;
-  color: #444;
+label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #27ae60;
 }
 
-/* Inputs */
-form input {
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  margin-bottom: 10px;
+/* Inputs and selects */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+    border: 2px solid #8bc34a;
+    border-radius: 15px;
+    outline: none;
+    transition: 0.2s;
+    background: #ffffff;
 }
 
-form input:focus {
-  border-color: #ff7b54;
-  box-shadow: 0 0 6px rgba(255,123,84,0.3);
-}
-form select {
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  margin-bottom: 10px;
-}
-
-form input:focus {
-  border-color: #ff7b54;
-  box-shadow: 0 0 6px rgba(255,123,84,0.3);
+input:focus, select:focus {
+    border-color: #27ae60;
+    box-shadow: 0 0 8px #27ae60;
 }
 
 /* Submit button */
-form button {
-  margin-top: 15px;
-  padding: 12px;
-  width: 100%;
-  border: none;
-  border-radius: 25px;
-  background: linear-gradient(135deg, #ff7b54, #ffb26b);
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
+button {
+    background: #ff7675;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    display: block;
+    margin: auto;
 }
 
-form button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #ff6b3d, #ffa64d);
+button:hover {
+    background: #d63031;
+}
+
+/* Cute paw-print decorations */
+.form-container::before, 
+.form-container::after {
+    content: "🐾";
+    font-size: 2rem;
+    position: absolute;
+    opacity: 0.2;
+}
+
+.form-container::before {
+    top: -20px;
+    left: -20px;
+}
+
+.form-container::after {
+    bottom: -20px;
+    right: -20px;
 }
