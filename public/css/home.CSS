@@ -9,24 +9,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Floating Paws */
-.paw {
-    position: absolute;
-    font-size: 40px;
-    opacity: 0.2;
-    animation: float 8s infinite linear;
-}
-.paw1 { top: 20%; left: 5%; animation-delay: 0s; }
-.paw2 { top: 60%; left: 10%; animation-delay: 2s; }
-.paw3 { top: 30%; right: 8%; animation-delay: 4s; }
-.paw4 { bottom: 15%; right: 12%; animation-delay: 6s; }
-
-@keyframes float {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(15deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-}
-
 /* Hero Section */
 .hero {
     margin: 50px auto;
