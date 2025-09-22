@@ -4,9 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet</title>
-    <link rel="stylesheet" href="<?=base_url();?>public/css/home.css">
+
 </head>
 <body>
+    <style>
+    /* General */
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #fffbea, #ffeaa7, #fad390);
+    color: #2c3e50;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    margin: 50px auto;
+    padding: 50px 20px;
+    background: #f9ca24;
+    border-radius: 20px;
+    border: 4px solid #e1b12c;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-shadow: 2px 2px #ffeaa7;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Buttons */
+.buttons {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 32px;
+    border-radius: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Button Glow Hover */
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.4);
+    transform: skewX(-25deg);
+    transition: 0.5s;
+}
+.btn:hover::before {
+    left: 100%;
+}
+
+/* Variants */
+.btn.checkin {
+    background: #55efc4;
+    border: 3px solid #00b894;
+}
+.btn.checkin:hover {
+    background: #00b894;
+    transform: scale(1.08);
+}
+
+.btn.list {
+    background: #74b9ff;
+    border: 3px solid #0984e3;
+}
+.btn.list:hover {
+    background: #0984e3;
+    transform: scale(1.08);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 16px; }
+    .btn { font-size: 16px; padding: 12px 24px; }
+}
+</style>
     <!-- Hero -->
     <div class="hero">
         <h1>🐾 Welcome to Pet's Playground 🐾</h1>
