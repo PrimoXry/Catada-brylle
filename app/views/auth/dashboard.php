@@ -173,7 +173,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
   <!-- Header / Top Navigation -->
   <div class="topnav">
-    <h1><i class="fa-solid fa-school"></i> Student Directory</h1>
+    <h1><i class="fa-solid fa-school"></i> 🐶Pet Directory</h1>
 
     <form method="get" action="<?=site_url('/auth/dashboard')?>" style="margin-top:10px;">
       <input 
