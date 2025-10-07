@@ -6,141 +6,235 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Directory - Kuromi Pink Coquette</title>
+  <title>Student Directory - Playground Theme</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="<?=base_url();?>/public/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    /* --- BODY BACKGROUND --- */
     body {
-      font-family: 'Poppins', sans-serif;
-      background-image: url('https://i.pinimg.com/736x/bf/01/f9/bf01f9444340ecdb37af06d201c6f1cf.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-    .overlay {
-      background: rgba(255, 240, 245, 0.6);
-    }
-    .magic-icon {
-      background: linear-gradient(135deg, #f472b6, #f9a8d4, #fbcfe8);
-      padding: 0.6rem;
-      border-radius: 9999px;
-      display: inline-flex;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top, #c8f7ff 0%, #a6e4ff 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      animation: float 3s ease-in-out infinite;
     }
-    @keyframes float {
-      0%,100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+
+    /* --- TOP NAVIGATION --- */
+    .topnav {
+      width: 100%;
+      background: #fffbea;
+      border-bottom: 5px solid #f9ca24;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
-    .btn-pink {
-      background: linear-gradient(to right, #f472b6, #f9a8d4);
+
+    .topnav h1 {
+      margin: 0 0 10px;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+
+    /* --- SEARCH BAR --- */
+    .search {
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: 2px solid #27ae60;
+      outline: none;
+      width: 220px;
+      transition: 0.3s;
+    }
+
+    .search:focus {
+      box-shadow: 0 0 8px #27ae60;
+    }
+
+    .btn {
+      background: #74b9ff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
       color: white;
+      font-weight: bold;
+      margin-left: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
     }
-    .btn-pink:hover {
-      background: linear-gradient(to right, #f9a8d4, #f472b6);
+
+    .btn:hover {
+      background: #0884e4;
     }
-    .input-pink {
-      background-color: rgba(255, 240, 245, 0.8);
+
+    /* --- TABLE STYLES --- */
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 900px;
+      margin: 25px auto;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
     }
-    .input-pink:hover {
-      background-color: rgba(249, 168, 212, 0.3);
+
+    table th, table td {
+      padding: 12px;
+      text-align: center;
+      border: none;
+    }
+
+    table th {
+      background: #f9ca24;
+      color: #2c3e50;
+      font-size: 1rem;
+    }
+
+    table tr:nth-child(even) {
+      background: #fef9e7;
+    }
+
+    table tr:hover {
+      background: #fdebd0;
+    }
+
+    /* --- PAGINATION --- */
+    .pagination {
+      margin: 20px auto;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pagination a,
+    .pagination strong,
+    .pagination span {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 20px;
+      background: #74b9ff;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+      border: 2px solid #0984e3;
+    }
+
+    .pagination a:hover {
+      background: #0984e3;
+    }
+
+    .pagination strong {
+      background: #f9ca24;
+      color: #2c3e50;
+      border-color: #e1b12c;
+    }
+
+    .pagination span {
+      background: #dfe6e9;
+      color: #636e72;
+      border-color: #b2bec3;
+      cursor: not-allowed;
+    }
+
+    /* --- LOGOUT BUTTON --- */
+    .btn-logout {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      background: #ff6b6b;
+      color: white;
+      border: 2px solid #c0392b;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      font-size: 1rem;
+    }
+
+    .btn-logout:hover {
+      background: #c0392b;
+      color: #fffbea;
+      box-shadow: 0 4px 12px rgba(192,57,43,0.5);
+      transform: scale(1.05);
     }
   </style>
 </head>
-<body class="min-h-screen relative text-pink-900">
 
-  <!-- Background Overlay -->
-  <div class="absolute inset-0 overlay z-0"></div>
+<body>
 
-  <!-- Container -->
-  <div class="relative z-10 max-w-6xl mx-auto py-12 px-4">
-    <div class="bg-white/40 backdrop-blur-2xl rounded-3xl p-8 border border-pink-200 shadow-2xl">
+  <!-- Header / Top Navigation -->
+  <div class="topnav">
+    <h1><i class="fa-solid fa-school"></i> Student Directory</h1>
 
-      <!-- Header -->
-      <div class="flex justify-between items-center mb-6">
-        <div class="flex items-center gap-3">
-          <div class="magic-icon">
-            <i class="fa-solid fa-heart text-white text-xl"></i>
-          </div>
-          <h1 class="text-2xl font-bold text-pink-900">Student Directory</h1>
-        </div>
+    <form method="get" action="<?=site_url('/auth/dashboard')?>" style="margin-top:10px;">
+      <input 
+        type="text" 
+        name="q" 
+        value="<?=html_escape($_GET['q'] ?? '')?>" 
+        placeholder="Search student..." 
+        class="search">
+      <button type="submit" class="btn">
+        <i class="fa fa-search"></i> Search
+      </button>
+    </form>
 
-        <!-- Logout -->
-        <a href="<?=site_url('auth/logout');?>"
-           class="btn-pink px-4 py-2 rounded-full shadow hover:scale-105 transition duration-300 flex items-center gap-2 text-sm">
-          <i class="fa-solid fa-right-from-bracket"></i> Logout
-        </a>
-      </div>
+    <a href="<?=site_url('auth/logout');?>" class="btn-logout">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
+  </div>
 
-      <!-- Search Bar -->
-      <form method="get" action="<?=site_url('/auth/dashboard')?>" class="flex justify-end mb-6">
-        <input 
-          type="text" 
-          name="q" 
-          value="<?=html_escape($_GET['q'] ?? '')?>" 
-          placeholder="Search student..." 
-          class="px-4 py-2 w-64 rounded-l-full border border-pink-300 input-pink text-pink-900 placeholder-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-500">
-        <button type="submit"
-                class="px-4 py-2 rounded-r-full btn-pink shadow transition hover:scale-105">
-          <i class="fa fa-search"></i>
-        </button>
-      </form>
+  <!-- Table Display -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if(!empty($user)): ?>
+        <?php foreach(html_escape($user) as $users): ?>
+          <tr>
+            <td><?=($users['id']);?></td>
+            <td><?=($users['name']);?></td>
+            <td><?=($users['type']);?></td>
+            <td><?=($users['age']);?></td>
+          </tr>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <tr>
+          <td colspan="4" style="font-style:italic; color:#636e72;">No Pet found</td>
+        </tr>
+      <?php endif; ?>
+    </tbody>
+  </table>
 
-      <!-- Table -->
-      <div class="overflow-x-auto border border-pink-300 rounded-2xl shadow-lg">
-        <table class="min-w-full text-center border-collapse text-pink-900 bg-white/50">
-          <thead class="bg-pink-200/70 text-pink-800 text-sm uppercase">
-            <tr>
-              <th class="py-3 px-4">ID</th>
-              <th class="py-3 px-4">Name</th>
-              <th class="py-3 px-4">Type</th>
-              <th class="py-3 px-4">Age</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php if(!empty($all)): ?>
-              <?php foreach(html_escape($all) as $pet): ?>
-                <tr class="hover:bg-pink-100 transition">
-                  <td class="py-3 px-4"><?=($pet['id']);?></td>
-                  <td class="py-3 px-4"><?=($pet['name']);?></td>
-                  <td class="py-3 px-4"><?=($pet['type']);?></td>
-                  <td class="py-3 px-4"><?=($pet['age']);?></td>
-                </tr>
-              <?php endforeach; ?>
-            <?php else: ?>
-              <tr>
-                <td colspan="4" class="py-4 italic text-pink-700">No Pet found</td>
-              </tr>
-            <?php endif; ?>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Pagination + Back -->
-      <div class="mt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-        <div class="pagination flex flex-wrap gap-2">
-          <?php
-            if (!empty($page)) {
-              echo str_replace(
-                ['<a ', '<strong>', '</strong>'],
-                [
-                  '<a class="px-3 py-1 rounded-full border border-pink-300 text-pink-700 hover:bg-pink-200 transition"',
-                  '<span class="bg-pink-500 text-white px-3 py-1 rounded-full">',
-                  '</span>'
-                ],
-                $page
-              );
-            }
-          ?>
-        </div>
-
-
-
-    </div>
+  <!-- Pagination -->
+  <div class="pagination">
+    <?php
+      if (!empty($page)) {
+        echo str_replace(
+          ['<a ', '<strong>', '</strong>'],
+          [
+            '<a ',
+            '<strong>',
+            '</strong>'
+          ],
+          $page
+        );
+      }
+    ?>
   </div>
 
 </body>
