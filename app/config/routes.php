@@ -43,7 +43,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('/', 'CrudController::Welcome');
+$router->match('/', 'AuthController::register', ['GET','POST']);
+
 $router->get('/pet/{name}/{type}/{age}', 'CrudController::pet');
 $router->get('/pet/show', 'CrudController::show');
 $router->match('/pet/create', 'CrudController::create', ['GET', 'POST']);
@@ -52,3 +53,7 @@ $router->get('/pet/delete/{id}', 'CrudController::delete');
 $router->get('/pet/softdelete/{id}', 'CrudController::softdelete');
 $router->get('/pet/restore/', 'CrudController::restore');
 $router->get('/pet/retrieve/{id}', 'CrudController::retrieve');
+
+$router->match('/auth/login', 'AuthController::login', ['GET','POST']);
+$router->get('/auth/logout', 'AuthController::logout');
+$router->get('/auth/dashboard', 'AuthController::dashboard');
