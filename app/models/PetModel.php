@@ -14,47 +14,59 @@ class PetModel extends Model {
     {
         parent::__construct();
     }
-    public function page($q, $records_per_page = null, $page = null)
-{
+    public function page($q, $records_per_page = null, $page = null) {
+            if (is_null($page)) {
+                return $this->db->table($this->table)->where_null('deleted_at')->get_all();
+            } 
+            else {
+                $query = $this->db->table($this->table);
+                $query->where_null('deleted_at');
+                
+                // Build LIKE conditions
+               if (!empty($q)) {
+                $query->like('id', '%'.$q.'%')
+                      ->or_like('name', '%'.$q.'%')
+                      ->or_like('type', '%'.$q.'%')
+                      ->or_like('age', '%'.$q.'%');
+            }
+            $query->order_by('id', 'ASC');
+
+                // Clone before pagination
+                $countQuery = clone $query;
+
+                $data['total_rows'] = $countQuery->select_count('*', 'count')->get()['count'];
+
+                $data['records'] = $query->pagination($records_per_page, $page)->get_all();
+                return $data;
+            }
+            
+        }
+        public function restore_page($q, $records_per_page = null, $page = null) {
     if (is_null($page)) {
-        return $this->db->table($this->table)
-                        ->where_null('deleted_at')
-                        ->get_all();
+        return $this->db->table($this->table)->where_not_null('deleted_at')->get_all();
     } else {
         $query = $this->db->table($this->table);
-        $query->where_null('deleted_at');
 
-        // --- Search filter ---
+        $query->where_not_null('deleted_at');
+        // Build LIKE conditions
         if (!empty($q)) {
-            $query->group_start()
-                  ->like('id', $q)
-                  ->or_like('name', $q)
-                  ->or_like('type', $q)
-                  ->or_like('age', $q)
-                  ->group_end();
+            $q = trim($q);
+            $query->where("(id LIKE '%".$q."%' 
+                        OR `name` LIKE '%".$q."%' 
+                        OR `type` LIKE '%".$q."%' 
+                        OR `age` LIKE '%".$q."%')");
         }
-
         $query->order_by('id', 'ASC');
 
-        // --- Count total rows ---
+        // Clone before pagination
         $countQuery = clone $query;
-        $countResult = $countQuery->select_count('*', 'count')->get();
+        $data['total_rows'] = $countQuery->select_count('*', 'count')->get()['count'];
 
-        if (is_array($countResult)) {
-            // if result is array of one row
-            $data['total_rows'] = $countResult[0]['count'] ?? 0;
-        } else {
-            // fallback for some database drivers
-            $data['total_rows'] = $countResult['count'] ?? 0;
-        }
-
-        // --- Get paginated records ---
         $data['records'] = $query->pagination($records_per_page, $page)->get_all();
 
         return $data;
     }
 }
-
 
 public function restore($id)
     {
