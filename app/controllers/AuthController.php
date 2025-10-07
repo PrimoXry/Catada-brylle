@@ -73,7 +73,7 @@ class AuthController extends Controller
 
         $records_per_page = 5;
         $all = $this->PetModel->page($q, $records_per_page, $page);
-        $data['users'] = $all['records'];
+        $data['user'] = $all['records'];
         $total_rows = $all['total_rows'];
 
         $this->pagination->set_options([
