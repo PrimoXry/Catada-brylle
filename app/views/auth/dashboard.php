@@ -6,7 +6,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Directory - Playground Theme</title>
+  <title>Pet Directory - Playground Theme</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="<?=base_url();?>/public/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -145,10 +145,16 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
       cursor: not-allowed;
     }
 
-    /* --- LOGOUT BUTTON --- */
+    /* --- LOGOUT BUTTON (BOTTOM) --- */
+    .logout-container {
+      margin-top: auto;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
     .btn-logout {
       display: inline-block;
-      padding: 10px 22px;
+      padding: 12px 28px;
       border-radius: 25px;
       font-weight: bold;
       text-decoration: none;
@@ -156,8 +162,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
       color: white;
       border: 2px solid #c0392b;
       transition: all 0.3s ease;
-      margin-top: 20px;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     .btn-logout:hover {
@@ -173,23 +178,19 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
   <!-- Header / Top Navigation -->
   <div class="topnav">
-    <h1><i class="fa-solid fa-school"></i> 🐶Pet Directory</h1>
+    <h1><i class="fa-solid fa-school"></i> 🐶 Pet Directory</h1>
 
     <form method="get" action="<?=site_url('/auth/dashboard')?>" style="margin-top:10px;">
       <input 
         type="text" 
         name="q" 
         value="<?=html_escape($_GET['q'] ?? '')?>" 
-        placeholder="Search student..." 
+        placeholder="Search pet..." 
         class="search">
       <button type="submit" class="btn">
         <i class="fa fa-search"></i> Search
       </button>
     </form>
-
-    <a href="<?=site_url('auth/logout');?>" class="btn-logout">
-      <i class="fa-solid fa-right-from-bracket"></i> Logout
-    </a>
   </div>
 
   <!-- Table Display -->
@@ -204,12 +205,12 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
     </thead>
     <tbody>
       <?php if(!empty($user)): ?>
-        <?php foreach(html_escape($user) as $users): ?>
+        <?php foreach($user as $users): ?>
           <tr>
-            <td><?=($users['id']);?></td>
-            <td><?=($users['name']);?></td>
-            <td><?=($users['type']);?></td>
-            <td><?=($users['age']);?></td>
+            <td><?=html_escape($users['id']);?></td>
+            <td><?=html_escape($users['name']);?></td>
+            <td><?=html_escape($users['type']);?></td>
+            <td><?=html_escape($users['age']);?></td>
           </tr>
         <?php endforeach; ?>
       <?php else: ?>
@@ -222,19 +223,14 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
   <!-- Pagination -->
   <div class="pagination">
-    <?php
-      if (!empty($page)) {
-        echo str_replace(
-          ['<a ', '<strong>', '</strong>'],
-          [
-            '<a ',
-            '<strong>',
-            '</strong>'
-          ],
-          $page
-        );
-      }
-    ?>
+    <?php if (!empty($page)) echo $page; ?>
+  </div>
+
+  <!-- Logout Button at Bottom -->
+  <div class="logout-container">
+    <a href="<?=site_url('auth/logout');?>" class="btn-logout">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
   </div>
 
 </body>
