@@ -96,19 +96,19 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
           <thead class="bg-pink-200/70 text-pink-800 text-sm uppercase">
             <tr>
               <th class="py-3 px-4">ID</th>
-              <th class="py-3 px-4">Last Name</th>
-              <th class="py-3 px-4">First Name</th>
-              <th class="py-3 px-4">Email</th>
+              <th class="py-3 px-4">Name</th>
+              <th class="py-3 px-4">Type</th>
+              <th class="py-3 px-4">Age</th>
             </tr>
           </thead>
           <tbody>
-            <?php if(!empty($users)): ?>
-              <?php foreach(html_escape($users) as $user): ?>
+            <?php if(!empty($all)): ?>
+              <?php foreach(html_escape($all) as $pet): ?>
                 <tr class="hover:bg-pink-100 transition">
-                  <td class="py-3 px-4"><?=($user['id']);?></td>
-                  <td class="py-3 px-4"><?=($user['last_name']);?></td>
-                  <td class="py-3 px-4"><?=($user['first_name']);?></td>
-                  <td class="py-3 px-4"><?=($user['email']);?></td>
+                  <td class="py-3 px-4"><?=($pet['id']);?></td>
+                  <td class="py-3 px-4"><?=($pet['name']);?></td>
+                  <td class="py-3 px-4"><?=($pet['type']);?></td>
+                  <td class="py-3 px-4"><?=($pet['age']);?></td>
                 </tr>
               <?php endforeach; ?>
             <?php else: ?>

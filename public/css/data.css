@@ -198,3 +198,24 @@ table a:hover {
     background: #f1c40f;
     color: white;
 }
+/* Logout button */
+.btn-logout {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #ff6b6b; /* bright red */
+    color: white;
+    border: 2px solid #c0392b;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.btn-logout:hover {
+    background: #c0392b; /* darker red on hover */
+    color: #fffbea;      /* matches topnav background */
+    box-shadow: 0 4px 12px rgba(192,57,43,0.5);
+    transform: scale(1.05);
+}
