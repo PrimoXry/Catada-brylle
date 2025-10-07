@@ -72,7 +72,7 @@ class AuthController extends Controller
         $q = isset($_GET['q']) ? trim($this->io->get('q')) : '';
 
         $records_per_page = 5;
-        $all = $this->UsersModel->page($q, $records_per_page, $page);
+        $all = $this->PetModel->page($q, $records_per_page, $page);
         $data['users'] = $all['records'];
         $total_rows = $all['total_rows'];
 

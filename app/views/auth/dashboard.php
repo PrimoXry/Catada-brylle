@@ -113,7 +113,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
               <?php endforeach; ?>
             <?php else: ?>
               <tr>
-                <td colspan="4" class="py-4 italic text-pink-700">No students found 💔</td>
+                <td colspan="4" class="py-4 italic text-pink-700">No Pet found</td>
               </tr>
             <?php endif; ?>
           </tbody>
