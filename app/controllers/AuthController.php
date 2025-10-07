@@ -68,14 +68,21 @@ class AuthController extends Controller
         // For regular users: load read-only user list
         $this->call->model('PetModel');
 
-        $page = isset($_GET['page']) ? (int) $this->io->get('page') : 1;
-        $q = isset($_GET['q']) ? trim($this->io->get('q')) : '';
+         $page = 1;
+        if(isset($_GET['page']) && ! empty($_GET['page'])) {
+            $page = $this->io->get('page');
+        }
+
+        $q = '';
+        if(isset($_GET['q']) && ! empty($_GET['q'])) {
+            $q = trim($this->io->get('q'));
+        }
 
         $records_per_page = 5;
-        $all = $this->PetModel->page($q, $records_per_page, $page);
-        $data['user'] = $all['records'];
-        $total_rows = $all['total_rows'];
 
+        $all = $this->PetModel->page($q, $records_per_page, $page);
+        $data['all'] = $all['records'];
+        $total_rows = $all['total_rows'];
         $this->pagination->set_options([
             'first_link'     => '⏮ First',
             'last_link'      => 'Last ⏭',
@@ -83,17 +90,9 @@ class AuthController extends Controller
             'prev_link'      => '← Prev',
             'page_delimiter' => '&page='
         ]);
-
-        $this->pagination->set_theme('default');
-        $this->pagination->initialize(
-            $total_rows,
-            $records_per_page,
-            $page,
-            site_url('/auth/dashboard') . '?q=' . urlencode($q)
-        );
-
+        $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
+        $this->pagination->initialize($total_rows, $records_per_page, $page, 'auth/dashboard?q='.$q);
         $data['page'] = $this->pagination->paginate();
-
         $this->call->view('auth/dashboard', $data);
     }
 
